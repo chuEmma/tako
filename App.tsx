@@ -1,25 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
-import {ItemObj} from './classes/item';
-import {data} from './data';
-import {createItems} from './components/item';
+import {SafeAreaView} from 'react-native';
+import {ItemContainer} from './components/item';
+import {styles} from './styles/styles';
+import {Balance} from './components/balance';
 
 export default function App() {
   // On App Start
 
-  const items = data.items;
+  const today = new Date();
 
   return (
-    <View style={styles.container}>
-      {createItems(items)}
-    </View>
+    <SafeAreaView style={[styles.col]}>
+      <Balance year={today.getFullYear()} month={today.getMonth()}/>
+      <ItemContainer year={today.getFullYear()} month={today.getMonth()}/>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -2,51 +2,59 @@ import {View, Text} from 'react-native';
 import {styles} from '../styles/styles';
 import {data} from '../data';
 
-const Balance = (props: any) => {
-    return(
-        <View style={[styles.col, {alignItems: 'center'}]}>
-            <Text>{props.type}</Text>
-            <Text>{props.amount}</Text>
-        </View>
-    );
-}
+export const Balance = (props: any) => {
 
-export const BalanceBanner = () => {
-
-    const balances = loadExpenses();
+    const balances = loadExpensesOfMonth(props.year, props.month);
 
     return(
-        <View style={[styles.col, {paddingVertical: 15, gap: 10}]}>
-            <Balance type='Balance' amount={balances.balance.toFixed(2)}></Balance>
+        <View style={[styles.col, {paddingVertical: 15, gap: 5}]}>
+            <View style={[styles.col, {alignItems: 'center', gap: 3}]}>
+                <Text style={styles.label}>Balance</Text>
+                <Text style={{fontSize: 25}}>{balances.balance.toFixed(2)}</Text>
+            </View>
             <View style={[styles.row, {justifyContent: 'space-around'}]}>
-                <Balance type='Expenses' amount={balances.expenses.toFixed(2)}></Balance>
-                <Balance type='Income' amount={balances.income.toFixed(2)}></Balance>
+                <View style={[styles.col, {alignItems: 'center', gap: 3}]}>
+                    <Text style={styles.label}>Expenses</Text>
+                    <Text style={{fontSize: 16}}>{balances.expenses.toFixed(2)}</Text>
+                </View>
+                <View style={[styles.col, {alignItems: 'center', gap: 3}]}>
+                    <Text style={styles.label}>Income</Text>
+                    <Text style={{fontSize: 16}}>{balances.income.toFixed(2)}</Text>
+                </View>
             </View>
         </View>
     );
 }
 
-function loadExpenses() {
-    const items = data.items;
-
+function loadExpensesOfMonth(year: number, month: number) {
+    
     let expenses = 0.00;
     let income = 0.00;
 
-    items.forEach((item) => {
-        if (item.type == "Expenses") {
-            expenses = expenses + item.amount;
-        } else if (item.type == "Income") {
-            income = income + item.amount;
+    // There is existing data for given year and month
+    if (data[year] !== undefined) {
+        if (data[year][month] !== undefined) {
+            const items = data[year][month];
+
+            for (const date in items) {
+                const itemsByDate = items[date];
+
+                itemsByDate.forEach(item => {
+                    if (item.type == "Expenses") {
+                        expenses = expenses + item.amount;
+                    } else if (item.type == "Income") {
+                        income = income + item.amount;
+                    }
+                });
+            }
         }
-    })
+    }
 
     let balance = income - expenses;
 
-    const balances = {
+    return {
         balance: balance,
         expenses: expenses,
         income: income
-    }
-
-    return balances;
+    };
 }

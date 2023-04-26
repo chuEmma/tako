@@ -1,26 +1,42 @@
 // Should change to JSON file (in order to read and write)
+
 export const data = {
-    items: [
-        {
-            id: 1,
-            date: new Date(), 
-            category: "Food", 
-            desc: "Boiling Point", 
-            amount: 20.00
+    2023: {
+        // April
+        3: {
+            19: [
+            {
+                date: new Date("2023-04-19"),
+                type: "Expenses",
+                category: "Food", 
+                desc: "Boiling Point", 
+                amount: 20.00
+            },
+            {
+                date: new Date("2023-04-19"),
+                type: "Expenses",
+                category: "Food", 
+                desc: "Boiling Point", 
+                amount: 20.00
+            }],
+
+            13: [
+            {
+                date: new Date("2023-04-13"),
+                type: "Expenses", 
+                category: "Groceries", 
+                desc: "Safeway", 
+                amount: 32.50
+            }],
+
+            18: [
+            {
+                date: new Date("2023-04-18"),
+                type: "Expenses", 
+                category: "Food", 
+                desc: "Happy Lemon", 
+                amount: 7.60
+            }]
         },
-        {
-            id: 2,
-            date: new Date(), 
-            category: "Groceries", 
-            desc: "Safeway", 
-            amount: 32.50
-        },
-        {
-            id: 3,
-            date: new Date(), 
-            category: "Food", 
-            desc: "Happy Lemon", 
-            amount: 7.60
-        }
-    ]
+    }
 }

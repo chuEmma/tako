@@ -9,5 +9,9 @@ export const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    label: {
+        fontSize: 12,
+        opacity: 0.30,
     }
 })
