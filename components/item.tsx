@@ -65,21 +65,31 @@ export const ItemContainer = (props: any) => {
         } else {
             // There is existing data for that year and month
             const items = data[props.year][props.month];
+            
+            // As an array
+            const itemsArray = Object.keys(items);
 
-            // Array of built components
-            const components = [];
 
-            // for (const date in items) {
-            //     // Array of items by certain date
-            //     const itemsByDate = items[date];
+            return( 
+                <>
+                {
+                    itemsArray.map((date, idx) => {
+                        const itemsByDate = items[date];
 
-            //     // Component for each date
-            //     const itemsByDateComp = <ItemsByDate date={new Date(props.year, props.month, Number(date))} items={itemsByDate}></ItemsByDate>; 
-            //     components.unshift(itemsByDateComp);
-            // }
-
-            // // Something wrong here
-            // return(<View style={{gap: 15}}>{components}</View>);
+                        return(
+                            <View key={idx}>
+                                <Text>{new Date(props.year, props.month, Number(date)).toDateString()}</Text>
+                                {
+                                    itemsByDate.map((item: any, idx: any) => {
+                                        return (<Item type={item.type} category={item.category} desc={item.desc} amount={item.amount.toFixed(2)} key={idx}></Item>)
+                                    })
+                                }
+                            </View>
+                        )
+                    })
+                }
+                </>
+            );
         }
     }
 }
