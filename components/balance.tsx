@@ -6,7 +6,7 @@ export const Balance = (props: any) => {
 
     const balances = loadExpensesOfMonth(props.year, props.month);
 
-    return(
+    return (
         <View style={[styles.col, {paddingVertical: 15, gap: 5}]}>
             <View style={[styles.col, {alignItems: 'center', gap: 3}]}>
                 <Text style={styles.label}>Balance</Text>
