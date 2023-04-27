@@ -1,9 +1,9 @@
-import {SafeAreaView, View} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import {Items} from './components/item';
-import {styles} from './styles/styles';
 import {Balance} from './components/balance';
 import {Month} from './components/month';
-import { Fragment } from 'react';
+import {Fragment} from 'react';
+import {styles} from './styles/styles';
 
 export default function App() {
   // On App Start
@@ -12,16 +12,22 @@ export default function App() {
 
   return (
     <Fragment>
-      <SafeAreaView style={{backgroundColor: "white"}}/>
-      <SafeAreaView style={{backgroundColor:"#f0f0f0", gap: 25}}>
-        <View style={{backgroundColor: "white"}}>
-          <Balance year={today.getFullYear()} month={today.getMonth()}/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <SafeAreaView/>
+        <View style={{backgroundColor: "white"}}/>
+        <View style={[styles.col, {backgroundColor:"#f0f0f0", gap: 25}]}>
+          <View style={{backgroundColor: "white"}}>
+            <Balance year={today.getFullYear()} month={today.getMonth()}/>
+          </View>
+          <View style={{backgroundColor: "white"}}>
+            <Month year={today.getFullYear()} month={today.getMonth()}/>
+            <Items year={today.getFullYear()} month={today.getMonth()}/>
+          </View>
         </View>
-        <View style={{backgroundColor: "white"}}>
-          <Month year={today.getFullYear()} month={today.getMonth()}/>
-          <Items year={today.getFullYear()} month={today.getMonth()}/>
-        </View>
-      </SafeAreaView>
+      </ScrollView>
+      <View style={[styles.addOverlay]}>
+        <Text>Hello</Text>
+      </View>
     </Fragment>
   );
 }

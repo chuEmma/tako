@@ -1,6 +1,7 @@
 import {View, Text} from 'react-native';
 import {styles} from '../styles/styles';
 import {data} from '../data';
+import {days, shortMonths} from './month';
 
 const Item = (props: any) => {
 
@@ -37,14 +38,20 @@ export const Items = (props: any) => {
             const itemsArray = Object.keys(items).reverse();
 
             return( 
-                <View style={[styles.col, {gap: 12}]}>
+                <View style={[styles.col, {gap: 20}]}>
                 {
                     itemsArray.map((date, idx) => {
                         const itemsByDate = items[date];
+
+                        const newDate = new Date(props.year, props.month, Number(date));
+                        const dateLabel = days[newDate.getDay()] + ", " + shortMonths[newDate.getMonth()] + " " + date;
                         
                         return(
-                            <View key={idx} style={[styles.col, {paddingHorizontal: 15, gap: 5}]}>
-                                <Text>{new Date(props.year, props.month, Number(date)).toDateString()}</Text>
+                            <View key={idx} style={[styles.col, {paddingHorizontal: 15, gap: 10}]}>
+                                <View style={{gap: 5}}>
+                                    <Text style={[styles.label]}>{dateLabel}</Text>
+                                    <View style={{paddingBottom: 2, borderBottomWidth: 1, opacity: 0.1}}/>
+                                </View>
                                 <View>
                                     {
                                         itemsByDate.map((item: any, idx: any) => {

@@ -45,7 +45,29 @@ export const data = {
                 category: "Salary", 
                 desc: "TA Pay Cheque", 
                 amount: 336.49
-            }]
+            },
+            {
+                date: new Date("2023-04-15"),
+                type: "Expenses", 
+                category: "Clothes", 
+                desc: "Pants", 
+                amount: 30.00
+            },
+            {
+                date: new Date("2023-04-15"),
+                type: "Expenses", 
+                category: "Clothes", 
+                desc: "Pants", 
+                amount: 30.00
+            },
+            {
+                date: new Date("2023-04-15"),
+                type: "Expenses", 
+                category: "Clothes", 
+                desc: "Pants", 
+                amount: 30.00
+            }
+            ]
         },
     }
 }
