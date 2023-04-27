@@ -4,8 +4,9 @@ import {data} from '../data';
 
 const Item = (props: any) => {
 
+    let amount = props.amount;
     if (props.type == "Income") {
-        props.amount = "+ " + props.amount;
+        amount = "+ " + props.amount;
     }
 
     return(
@@ -17,7 +18,7 @@ const Item = (props: any) => {
                     <Text style={styles.label}>{props.desc}</Text>
                 </View>
                 <View style={[styles.row]}>
-                    <Text style={{fontSize: 16}}>{props.amount}</Text>
+                    <Text style={{fontSize: 16}}>{amount}</Text>
                 </View>
             </View>
         </View>
@@ -33,7 +34,7 @@ export const Items = (props: any) => {
             const items = data[props.year][props.month];
             
             // As an array
-            const itemsArray = Object.keys(items);
+            const itemsArray = Object.keys(items).reverse();
 
             return( 
                 <View style={[styles.col, {gap: 12}]}>
@@ -57,7 +58,6 @@ export const Items = (props: any) => {
                 }
                 </View>
             );
-
         }
     }
 

@@ -36,6 +36,15 @@ export const data = {
                 category: "Food", 
                 desc: "Happy Lemon", 
                 amount: 7.60
+            }],
+
+            15: [
+            {
+                date: new Date("2023-04-15"),
+                type: "Income", 
+                category: "Salary", 
+                desc: "TA Pay Cheque", 
+                amount: 336.49
             }]
         },
     }
